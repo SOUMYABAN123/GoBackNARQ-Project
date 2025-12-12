@@ -1,13 +1,13 @@
-PROJECT -1
-A SIMULATION REPORT ON GO BACK N ARQ USING OMNET++
+## PROJECT -1
+# A SIMULATION REPORT ON GO BACK N ARQ USING OMNET++
 
-Abstract:
+# Abstract:
 
 Ensuring dependable data transmission across unreliable or noisy networks remains a key concern in the design of communication protocols. This study offers a simulation-driven assessment of the Go-Back-N ARQ (Automatic Repeat reQuest) protocol, utilizing the Sliding Window approach to investigate its behavior under diverse error conditions. Go-Back-N allows the sender to dispatch several frames consecutively within a defined window size, without waiting for individual acknowledgments. While this boosts transmission efficiency, any detection of a missing or corrupted frame triggers the retransmission of that frame and all subsequent ones, potentially reducing bandwidth utilization.
 The simulation, built using the OMNeT++ framework, replicates the dynamics between sender and receiver, including frame numbering, acknowledgment processing, timeout handling, and retransmission strategies. The Sliding Window protocol facilitates flow control and guarantees sequential delivery of frames. Key performance indicators—such as data throughput, frequency of retransmissions, and overall channel efficiency—are evaluated across varying window sizes and simulated error rates.
 Findings underscore the protocol’s reliability and straightforward implementation, while also exposing its drawbacks in environments with frequent transmission errors. The insights gained from this analysis lay the groundwork for future exploration of more advanced error-handling protocols like Selective Repeat ARQ and Hybrid ARQ.
 
-Introduction:
+# Introduction:
 
 Reliable data transmission is a key requirement in computer networks, especially when operating over noisy or error-prone channels. To ensure that data arrives correctly and in order, various error control protocols have been developed. One widely used method is Go-Back-N Automatic Repeat reQuest (ARQ), a type of sliding window protocol that balances simplicity with performance.
 In Go-Back-N ARQ, the sender can transmit multiple frames before waiting for acknowledgments (ACKs) from the receiver. If a frame is lost or corrupted, the sender retransmits that frame along with all subsequent frames in the window. This mechanism ensures reliability but may lead to bandwidth inefficiencies when errors are frequent.
@@ -17,13 +17,10 @@ The goal of this study is to evaluate the performance of Go-Back-N ARQ under var
 
 Here we can observe how a Go-Back-N Protocol works based on the pictorial representation for window size 4.
 
- 
-
-
-Methodology:
+# Methodology:
 
 This simulation models the Go-Back-N ARQ protocol using OMNeT++, a discrete event simulator for network systems. The protocol is implemented using two modules: Sender (Tic) and Receiver (Toc). The communication between them follows the Go-Back-N logic, where multiple frames are sent in a window, and lost or corrupted frames trigger retransmissions.
-Simulation Setup
+# Simulation Setup
 •	Tool Used: OMNeT++ (with INET framework)
 •	Modules: Tic (sender) and Toc (receiver)
 •	Protocol: Go-Back-N ARQ with sliding window
@@ -32,7 +29,7 @@ o	Window size (N)
 o	Timeout interval
 o	Error probability
 o	Frame sequence numbers
-Process Flow
+# Process Flow
 1. Sender Initialization
 •	The sender starts by generating a sequence of data frames.
 •	It maintains a sliding window of size N.
@@ -65,9 +62,9 @@ Output Metrics
 •	Retransmission Count: Total number of frames resent due to errors
 •	Efficiency: Ratio of useful data to total transmitted data
 
-Message Sequence Chart:
+# Message Sequence Chart:
 
-Message Sequence Chart: Go-Back-N ARQ Protocol:
+# Message Sequence Chart: Go-Back-N ARQ Protocol:
 
  
 Explanation:
@@ -97,10 +94,7 @@ Tic receives RR(ackNum=7)
 •	Cancels the timeout timer since all packets were acknowledged.
 
 TimeOut and Retransmission Scenario:
-
- 
-
-Explanation:
+# Explanation:
 
 Next Round Begins
 Tic sends packets seq=0 to seq=4 again (wraparound)
@@ -120,11 +114,11 @@ If Toc's buffer is full:
 •	Tic sets canSend = false and pauses transmission.
 •	Once buffer space is available, Toc sends RR to resume flow.
 
-Simplified Flow Chart:
+# Simplified Flow Chart:
 
  
 
-This Flow Chart Demonstrates
+# This Flow Chart Demonstrates
 
 Concept	Role in Chart
 Sliding Window	Controls how many packets are sent before waiting for ACKs
@@ -133,22 +127,11 @@ Flow Control (RNR)	Prevents buffer overflow at receiver
 Timeout & Retransmit	Ensures reliability when packets or ACKs are lost
 Sequence Numbers	Maintains order and detects missing frames
 
-
-
-
-
-
-
-Test Parameter:
+# Test Parameter:
 
  
 
-Simulation Output:
-
- 
-
-
-
+# Simulation Output:
 Event #1: QUERY_REQUEST
 •	t=0.1: The receiver (Toc) receives a QUERY_REQUEST from the sender (Tic).
 •	This is a control message asking: “What’s your window size?”
@@ -165,10 +148,6 @@ o	It adds it to the buffer (buffer size becomes 1).
 o	Then it accepts the in-order packet, reducing buffer size back to 0.
 •	t=0.5: Toc receives packet seq=1.
 o	Same process: buffer size goes to 1, then back to 0 after accepting the packet.
-
- 
-
-
 Key Events in the below Log
 Packet Reception
 •	"Received Packet with seq=7, buffer=7"
@@ -194,13 +173,7 @@ o	This includes:
 	Packets that were sent but not acknowledged.
 	Possibly packets that were lost or corrupted.
 	Packet #0 and #1 might be part of a wrap-around if the sequence numbers are modulo-based.
-
- 
-
-Output Logs and Graphs:
-
- 
-
+# Output Logs and Graphs:
 Top Panel: Event Timeline
 •	This is a sequence chart showing how packets and control messages flow between modules over time.
 •	X-axis: Time (in milliseconds).
@@ -216,8 +189,7 @@ o	Module initialization (GoBackN, TGoBackN.tx, etc.).
 o	Gate creation (used for connecting modules).
 o	Event handling (e.g., packet sent, received, dropped).
 
-Conclusion:
-
+# Conclusion:
 This project successfully simulated the Go-Back-N Automatic Repeat reQuest (ARQ) protocol using the OMNeT++ network simulation framework. By implementing sender and receiver modules with configurable parameters such as window size, data rate, ACK frequency, and packet loss probability, the simulation provided a clear understanding of how Go-Back-N handles reliable data transmission over unreliable channels.
 The results demonstrated the protocol’s ability to maintain in-order delivery and error recovery through retransmissions triggered by timeouts and missing acknowledgments. While Go-Back-N offers simplicity and robustness, the simulation also highlighted its limitations—particularly the inefficiency caused by retransmitting multiple packets even when only one is lost.
 Overall, this study reinforces the importance of sliding window protocols in network communication and lays the groundwork for future exploration of more advanced techniques such as Selective Repeat ARQ and Hybrid ARQ, which aim to improve bandwidth utilization and reduce unnecessary retransmissions.
