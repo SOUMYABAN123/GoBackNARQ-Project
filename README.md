@@ -63,11 +63,15 @@ Output Metrics
 •	Efficiency: Ratio of useful data to total transmitted data
 
 # Message Sequence Chart:
+<img width="977" height="423" alt="image" src="https://github.com/user-attachments/assets/5401ad67-e81c-49c4-aca4-b351339b70de" />
+
 
 # Message Sequence Chart: Go-Back-N ARQ Protocol:
+<img width="871" height="452" alt="image" src="https://github.com/user-attachments/assets/4786ba4d-8150-4659-82ef-ebfd7d7804d8" />
 
- 
 Explanation:
+<img width="628" height="705" alt="image" src="https://github.com/user-attachments/assets/4844b7b6-bb44-4009-990d-05f5770a8369" />
+
 It’s a chronological interaction between two modules:
 •	Tic (Sender): Sends data packets and handles retransmissions.
 •	Toc (Receiver): Receives packets, buffers them, and sends control messages like ACKs (RR) or flow control (RNR).
@@ -174,6 +178,8 @@ o	This includes:
 	Possibly packets that were lost or corrupted.
 	Packet #0 and #1 might be part of a wrap-around if the sequence numbers are modulo-based.
 # Output Logs and Graphs:
+<img width="617" height="337" alt="image" src="https://github.com/user-attachments/assets/26319a62-698f-4cba-bed0-d7457f4acba4" />
+
 Top Panel: Event Timeline
 •	This is a sequence chart showing how packets and control messages flow between modules over time.
 •	X-axis: Time (in milliseconds).
